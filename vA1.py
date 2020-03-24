@@ -106,4 +106,42 @@ if __name__ == "__main__":
                 speak("Email has been sent!")
             except Exception as e:
                 print(e)
-                speak("Sorry team9. I am not able to send this email")    
+                speak("Sorry team9. I am not able to send this email") 
+                
+        elif 'how are you' in query:
+			speak("I am fine, Thank you") 
+			speak("How are you, Sir")
+            
+        elif "what's your name" in query or "What is your name" in query: 
+			speak("My friends call me") 
+			speak("friday") 
+			print("My friends call me friday")   `      
+          
+        elif 'exit' in query: 
+			speak("Thanks for giving me your time") 
+			exit() 
+            
+        elif "who made you" in query or "who created you" in query: 
+			speak("I have been created by Team 9") 
+			    
+        elif 'lock window' in query: 
+			speak("locking the device") 
+			ctypes.windll.user32.LockWorkStation() 
+
+		elif 'shutdown system' in query: 
+			speak("Hold On a Sec ! Your system is on its way to shut down") 
+			subprocess.call('shutdown / p /f') 
+				
+		elif 'empty recycle bin' in query: 
+			winshell.recycle_bin().empty(confirm = False, show_progress = False, sound = True) 
+			speak("Recycle Bin Recycled") 
+            
+        elif "don't listen" in query or "stop listening" in query: 
+			speak("for how much time you want to stop jarvis from listening commands") 
+			a = int(takeCommand()) 
+			time.sleep(a) 
+			print(a)   
+            
+            
+            
+            
