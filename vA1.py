@@ -128,11 +128,11 @@ if __name__ == "__main__":
 			speak("locking the device") 
 			ctypes.windll.user32.LockWorkStation() 
 
-		elif 'shutdown system' in query: 
+	elif 'shutdown system' in query: 
 			speak("Hold On a Sec ! Your system is on its way to shut down") 
 			subprocess.call('shutdown / p /f') 
 				
-		elif 'empty recycle bin' in query: 
+	elif 'empty recycle bin' in query: 
 			winshell.recycle_bin().empty(confirm = False, show_progress = False, sound = True) 
 			speak("Recycle Bin Recycled") 
             
@@ -143,5 +143,24 @@ if __name__ == "__main__":
 			print(a)   
             
             
-            
+        elif "write a note" in query: 
+			speak("What should i write, sir") 
+			note = takeCommand() 
+			file = open('jarvis.txt', 'w') 
+			speak("Sir, Should i include date and time") 
+			snfm = takeCommand() 
+			if 'yes' in snfm or 'sure' in snfm: 
+				strTime = datetime.datetime.now().strftime("%H:%M:%S") 
+				file.write(strTime) 
+				file.write(" :- ") 
+				file.write(note) 
+			else: 
+				file.write(note) 
+		        
+	elif "show note" in query: 
+			speak("Showing Notes") 
+			file = open("jarvis.txt", "r") 
+			print(file.read()) 
+			speak(file.read(6)) 
+    
             
