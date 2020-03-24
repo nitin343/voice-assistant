@@ -1,18 +1,15 @@
-import pyttsx3 #pip install pyttsx3
-import speech_recognition as sr 
+import pyttsx3 #pip install pyttsx3==2.6
+import speech_recognition as sr #pip install speechRecognition
 import datetime
 import wikipedia #pip install wikipedia
-import webbrowser 
+import webbrowser
 import os
 import smtplib
-
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 # print(voices[1].id)
-engine.setProperty('voice', voices[1].id)
-
-
+engine.setProperty('voice', voices[0].id)
 
 
 def speak(audio):
@@ -47,8 +44,8 @@ def takeCommand():
         query = r.recognize_google(audio, language='en-in')
         print(f"User said: {query}\n")
 
-    except Exception:
-           
+    except Exception as e:
+        # print(e)    
         print("Say that again please...")  
         return "None"
     return query
@@ -77,8 +74,7 @@ if __name__ == "__main__":
             speak(results)
 
         elif 'open youtube' in query:
-            web = webbrowser.get("C:\\Users\\Public\\Desktop\\Firefox")
-            web.open("youtube.com")
+            webbrowser.open("youtube.com")
 
         elif 'open google' in query:
             webbrowser.open("google.com")
@@ -97,8 +93,8 @@ if __name__ == "__main__":
             strTime = datetime.datetime.now().strftime("%H:%M:%S")    
             speak(f"Sir, the time is {strTime}")
 
-        elif 'open pycharm' in query:
-            codePath = "C:\\Program Files\\JetBrains\\PyCharm Community Edition 2019.3.3\\bin\\pycharm64.exe"
+        elif 'open code' in query:
+            codePath = "C:\\Users\\Haris\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
             os.startfile(codePath)
 
         elif 'email to harry' in query:
@@ -110,16 +106,4 @@ if __name__ == "__main__":
                 speak("Email has been sent!")
             except Exception as e:
                 print(e)
-                speak("Sorry mr stark. I am not able to send this email")    
-        
-        elif "how are you" in query:
-            speak("I'm fine,glad you me that")
-
-        elif 'wikipedia' in query:
-            webbrowser.open("wikipedia.com")
-
-
-        elif "how are you" in query: 
-			speak("I'm fine, glad you me that") 
-
-       
+                speak("Sorry my friend harry bhai. I am not able to send this email")    
